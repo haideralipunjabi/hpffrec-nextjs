@@ -1,0 +1,18 @@
+@import "../styles/colors.scss";
+
+.active {
+  background-color: $primary;
+}
+
+.link {
+  color: $fg1;
+}
+.link:hover {
+  color: $primary;
+}
+
+.siteName h3 {
+  font-weight: 500;
+  font-size: 28px;
+}
+

@@ -1,0 +1,33 @@
+@import "../styles/colors.scss";
+
+.card {
+    height: 100%;
+}
+.tags{
+    display: flex;
+    
+    span[type=info] {
+        background-color: #0D47A1;
+    }
+    span[type=book] {
+        background-color: #1B5E20;
+    }
+    span[type=time]{
+        background-color: #3E2723;
+    }
+    span[type=meta]{
+        background-color: #880E4F;
+    }
+    span[type=character]{
+        background-color: #311B92;
+    }
+    span[type=website]{
+        background-color: #b71c1c;
+    }
+    span[type=complete]{
+        background-color: #F57F17;
+    }
+    span[type=rank]{
+        background-color: #004D40;
+    }
+}
