@@ -7,9 +7,13 @@ export default function Halloffame() {
     const [mode,setMode] = useState("stories")
     const [duration,setDuration] = useState("thisweek");
     const [data,setData] = useState([])
-
+    const [loadingData,setLoadingData] = useState(true);
+    useEffect(()=>{
+      setLoadingData(false)
+    },[data])
  
     const updateData = ()=>{
+      setLoadingData(true)
         fetch(`/data/${mode}_top100_${duration}.json`).then(r=>r.json()).then(d=>{
             setData(d);
           })
@@ -39,8 +43,8 @@ export default function Halloffame() {
             <li className={(duration=="alltime")?"is-active":""}><a onClick={()=>setDuration("alltime")}>All Time</a></li>
         </ul>
         </div>
-        {
-          <CardGrid  data={data} authorMode={(mode=="authors")}/>
+        { 
+          <CardGrid  data={data} loadingData={loadingData} authorMode={(mode=="authors")}/>
             // (mode=="stories") && (
             // )
         }
