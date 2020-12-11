@@ -7,7 +7,6 @@ export default function FilterComponent(props){
     const [selected,setSelected] = useState([]);
     const [filteredChoices,setFilteredChoices] = useState([])
     const handleInputChange = (e)=>{
-        console.log(e.target.value,e.target.checked)
         if(e.target.checked){
             setSelected(selected=>[...selected,e.target.value])
         }
@@ -22,7 +21,6 @@ export default function FilterComponent(props){
             })
     }
     useEffect(()=>{
-        console.log(selected)
         onInputChange(name.toLowerCase(),selected)
     },[selected])
     useEffect(()=>{
