@@ -53,6 +53,6 @@ hr {
   height: 100%;
 }
 
-.pagination-previous,.pagination-next {
+.pagination-previous[disabled],.pagination-next[disabled] {
   color: #444444 !important;
 }
