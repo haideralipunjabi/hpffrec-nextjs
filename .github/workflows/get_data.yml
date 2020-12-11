@@ -1,5 +1,5 @@
 name: Get Data and Deploy
-# on: push
+on: push
 
 jobs:
   getdata:
@@ -16,3 +16,9 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           DATA_SOURCE: ${{ secrets.DATA_SOURCE }}
+      - uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          vercel-args: '--prod' #Optional
+          vercel-org-id: ${{ secrets.ORG_ID}}  #Required
+          vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
