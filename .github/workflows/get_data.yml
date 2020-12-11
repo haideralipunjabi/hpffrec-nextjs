@@ -1,5 +1,8 @@
 name: Get Data and Deploy
-on: push
+on: 
+  push
+  workflow_dispatch
+
 
 jobs:
   getdata:

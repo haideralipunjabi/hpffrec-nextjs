@@ -1,0 +1,14 @@
+name: Trigger Build
+
+on:
+  schedule:
+    -cron: '0 * * * *'
+
+jobs:
+  curl:
+    runs-on: ubuntu-latest
+    steps:
+    - name: curl
+      uses: wei/curl@v1
+      with:
+        args: ${{ secrets.TRIGGER_URL }} #Required 
