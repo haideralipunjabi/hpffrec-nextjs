@@ -20,14 +20,14 @@ export default function FilterComponent(props){
         return(
             <div className={`dropdown ${active?"is-active":""} mb-2`}>
                 <div className="dropdown-trigger">
-                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={()=>setActive(!active)}>
+                    <button className="button" aria-haspopup="true" aria-controls={`dropdown-menu-${name.toLowerCase()}`} onClick={()=>setActive(!active)}>
                         <span>{name}</span>
                         <span className="icon is-small">
                             <FontAwesomeIcon icon={["fas","angle-down"]}/>
                         </span>
                     </button>
                 </div>
-                <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                <div className={`dropdown-menu ${styles.dropdownMenu}`} id={`dropdown-menu-${name.toLowerCase()}`} role="menu">
                     <div className="dropdown-content">
                         {
                             choices.map((item,key)=>{

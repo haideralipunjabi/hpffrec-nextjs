@@ -5,10 +5,6 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   sodipodi:docname="hpffrec_icon.svg"
-   inkscape:version="1.0 (5b275a35d9, 2020-05-03)"
    id="svg8"
    version="1.1"
    viewBox="0 0 100 100"
@@ -16,25 +12,6 @@
    width="100mm">
   <defs
      id="defs2" />
-  <sodipodi:namedview
-     inkscape:window-maximized="1"
-     inkscape:window-y="0"
-     inkscape:window-x="0"
-     inkscape:window-height="1080"
-     inkscape:window-width="1920"
-     showgrid="false"
-     inkscape:document-rotation="0"
-     inkscape:current-layer="layer1"
-     inkscape:document-units="mm"
-     inkscape:cy="48.132937"
-     inkscape:cx="751.05403"
-     inkscape:zoom="0.35"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     borderopacity="1.0"
-     bordercolor="#666666"
-     pagecolor="#ffffff"
-     id="base" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -49,9 +26,7 @@
   </metadata>
   <g
      transform="translate(29.153698,-36.599145)"
-     id="layer1"
-     inkscape:groupmode="layer"
-     inkscape:label="Layer 1">
+     id="layer1">
     <g
        transform="translate(-41.153698,22.599145)"
        id="g967">
@@ -185,32 +160,6 @@
              d="m 36,45.00036 a 0.99974,0.99974 0 0 0 -1,1 1,1 0 1 1 -2,0 1,1 0 0 0 -2,0 1,1 0 0 1 -2,0 1,1 0 0 0 -2,0 1,1 0 0 1 -2,0 1,1 0 0 0 -2,0 2.99863,2.99863 0 0 0 5,2.23438 2.99506,2.99506 0 0 0 4,0 2.99863,2.99863 0 0 0 5,-2.23437 0.99974,0.99974 0 0 0 -1,-1.00001 z" />
         </g>
       </g>
-    </g>
-    <g
-       transform="translate(0,4.1175171)"
-       id="g1023">
-      <text
-         xml:space="preserve"
-         style="font-size:39.8639px;line-height:0;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';letter-spacing:0px;word-spacing:0px;stroke-width:1.00055"
-         x="76.02581"
-         y="81.823807"
-         id="text1007"><tspan
-           sodipodi:role="line"
-           x="76.02581"
-           y="81.823807"
-           style="font-size:39.8639px;fill:#ffffff;stroke-width:1.00055"
-           id="tspan1009">HPFanfiction</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-size:35.2778px;line-height:0;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';letter-spacing:0px;word-spacing:0px;stroke-width:0.264582"
-         x="71.593689"
-         y="113.29627"
-         id="text1017"><tspan
-           sodipodi:role="line"
-           id="tspan1015"
-           x="71.593689"
-           y="113.29627"
-           style="font-size:35.2778px;fill:#ffffff;stroke-width:0.264582">Recommender</tspan></text>
     </g>
   </g>
 </svg>
