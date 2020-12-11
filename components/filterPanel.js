@@ -111,7 +111,7 @@ export default function FilterPanel(props){
             <FilterComponent name="Words" choices={filterChoices.words} onInputChange={handleInputChange}/>
             <FilterComponent name="Genre" choices={filterChoices.genre} onInputChange={handleInputChange}/>
             <FilterComponent name="Website" choices={filterChoices.website} onInputChange={handleInputChange}/>
-            <FilterComponent name="Characters" choices={filterChoices.characters} onInputChange={handleInputChange}/>
+            <FilterComponent name="Characters" choices={filterChoices.characters} onInputChange={handleInputChange} limit={30}/>
             <FilterComponent name="Status" choices={filterChoices.status} onInputChange={handleInputChange}/>
             <FilterComponent name="Rated" choices={filterChoices.rated} onInputChange={handleInputChange}/>
         </div>
