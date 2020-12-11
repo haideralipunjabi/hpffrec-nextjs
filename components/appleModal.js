@@ -1,59 +1,20 @@
-import { useState, useEffect } from "react";
-import IconButton from "./iconButton";
-export default function DownloadButton(props) {
-  const { className } = props;
-  const [promptTrigger, setPromptTrigger] = useState();
-  const [isApple, setIsApple] = useState(false);
-  const [isAppleShown, setIsAppleShown] = useState(false);
-  useEffect(() => {
-    if (
-      ["iPhone", "iPad", "iPod"].includes(navigator.platform) &&
-      !navigator.standalone
-    ) {
-      setIsApple(true);
-    }
-    const handlePrompt = (e) => {
-      setPromptTrigger(e);
-    };
-    window.addEventListener("beforeinstallprompt", handlePrompt);
-    return () => {
-      window.removeEventListener("beforeinstallprompt", handlePrompt);
-    };
-  });
-
-  const download = () => {
-    if (isApple) {
-      setIsAppleShown(true);
-    }
-    if (promptTrigger) {
-      promptTrigger.prompt();
-    }
-  };
-
-  if (isApple || promptTrigger) {
+export default function AppleModal(props) {
+    const {isActive,handleClose} = props;
     return (
-      <>
-        <div className={className}>
-          <IconButton onClick={download} icon={["fas", "arrow-circle-down"]}>
-            Download
-          </IconButton>
-        </div>
-        <div className={`modal ${isAppleShown ? "is-active" : ""}`}>
-          <div className="modal-background">
+      <div className={`modal ${isActive?"is-active":""}`}>
+          <div className="modal-background"></div>
             <div className="modal-card">
               <header className="modal-card-head">
                 <p className="modal-card-title">What about iOS?</p>
                 <button
                   className="delete"
                   aria-label="close"
-                  onClick={() => {
-                    setIsAppleShown(false);
-                  }}
+                  onClick={handleClose}
                 ></button>
               </header>
               <section className="modal-card-body">
                 <h4 className="is-size-4 has-text-centered has-text-weight-bold	">
-                  Install Tweet2Pic on iOS
+                  Install HPFanfiction Recommender on iOS
                 </h4>
                 <p className="has-text-centered">
                   Install this application on your home screen for quick and
@@ -85,10 +46,6 @@ export default function DownloadButton(props) {
                 </p>
               </section>
             </div>
-          </div>
         </div>
-      </>
     );
   }
-  return null;
-}

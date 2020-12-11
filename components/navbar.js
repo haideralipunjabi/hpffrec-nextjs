@@ -4,11 +4,14 @@ import Link from "next/link";
 import LogoSvg from "../public/hpffrec_icon.svg"
 import styles from "./navbar.module.scss";
 import IconButton from "./iconButton";
-import DownloadButton from "./downloadPWA";
+import AppleModal from "./appleModal";
+import {isApple, isInstallable} from "./CustomHooks";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isAppleShown,setIsAppleShown] = useState(false);
   const router = useRouter();
-
+  const installPWA = isInstallable()
+  const isAppleDevice = isApple();
   return (
     <>
       <nav className={"navbar"} role="navigation" aria-label="main navigation">
@@ -65,7 +68,21 @@ export default function Navbar() {
               </IconButton>
             
             </div> */}
-              <DownloadButton className="navbar-item" />
+            <div className={`navbar-item ${(isAppleDevice||installPWA)?"":"is-hidden"}`}>
+              <IconButton
+                onClick={() => {
+                  if(isAppleDevice){
+                    setIsAppleShown(true);
+                  } 
+                  else {
+                    installPWA.prompt();
+                  }
+                }}
+                icon={["fas", "arrow-circle-down"]}
+              >
+                Download
+              </IconButton>
+            </div>
             <div className="navbar-item">
               <Link href="/about">
                 <IconButton
@@ -79,6 +96,7 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      <AppleModal isActive={isAppleShown} handleClose={()=>{setIsAppleShown(false)}}/>
     </>
   );
 }
