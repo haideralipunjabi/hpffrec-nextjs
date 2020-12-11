@@ -15,8 +15,8 @@ export default function Navbar() {
           
         <div className="navbar-item">
           <a className="is-flex is-align-items-center" href="/">
-            {/* <LogoSvg height={40} width={0} style={{ width: "auto" }}></LogoSvg> */}
-            <h3 className={"title is-hidden-mobile"}>HPFanfiction Recommender</h3>
+            <LogoSvg className="has-text-centered-mobile" height={40} width={0} style={{ width: "auto" }}></LogoSvg>
+            <h3 className={"title is-size-3 is-size-5-mobile"}>HPFanfiction Recommender</h3>
           </a>
         </div>
           <a
@@ -38,8 +38,17 @@ export default function Navbar() {
         >
           <div className={"navbar-end"}>
           <div className="navbar-item">
+              <Link href="/stats">
+                <IconButton icon={["fas", "chart-line"]}
+                className={router.pathname === "/stata" ? styles.active : ""}
+                >
+                 Stats
+                </IconButton>
+              </Link>
+            </div>
+          <div className="navbar-item">
               <Link href="/halloffame">
-                <IconButton icon={["fas", "arrow-circle-down"]}
+                <IconButton icon={["fas", "fire"]}
                 className={router.pathname === "/halloffame" ? styles.active : ""}
                 >
                   Hall of Fame

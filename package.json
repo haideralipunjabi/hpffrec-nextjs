@@ -17,6 +17,7 @@
     "babel-plugin-inline-react-svg": "^1.1.2",
     "babel-plugin-lodash": "^3.3.4",
     "bulma": "^0.9.1",
+    "dayjs": "^1.9.7",
     "next": "10.0.3",
     "next-compose-plugins": "^2.2.1",
     "next-pwa": "^5.0.0",

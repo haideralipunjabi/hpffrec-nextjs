@@ -40,7 +40,7 @@ export default function CardGrid(props) {
 
         }
         {
-          (filteredData.length>0) &&
+          (filteredData.length>0 && !loadingData) &&
         (
           <>
             <Pagination
