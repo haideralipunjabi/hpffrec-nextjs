@@ -100,6 +100,12 @@ export default function Home() {
             >
               View my Github
             </IconButton>
+            <IconButton
+                href="mailto:developer@hackesta.org"
+                icon={["fas", "envelope"]}
+              >
+                Contact Me
+              </IconButton>
           </div>
         </div>
       </section>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import LogoSvg from "../public/hpffrec_icon.svg"
 import styles from "./navbar.module.scss";
 import IconButton from "./iconButton";
+import DownloadButton from "./downloadPWA";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
@@ -55,15 +56,16 @@ export default function Navbar() {
                 </IconButton>
               </Link>
             </div>
-            <div className="navbar-item">
+            {/* <div className="navbar-item">
               <IconButton
                 href="mailto:developer@hackesta.org"
                 icon={["fas", "envelope"]}
               >
                 Contact
               </IconButton>
-            </div>
             
+            </div> */}
+              <DownloadButton className="navbar-item" />
             <div className="navbar-item">
               <Link href="/about">
                 <IconButton
