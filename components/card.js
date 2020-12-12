@@ -99,7 +99,7 @@ export default function Card(props) {
               <Tag key={key+"follows"} type="follows">{data.follows}</Tag>
               <Tag key={key+"reviews"} type="reviews">{data.reviews}</Tag>
               {splitCharacters(data.characters).map((char,idx) => (
-                <Tag key={char.toLowerCase().replaceAll(" ","")} type="character">{char}</Tag>
+                <Tag key={char.toLowerCase().replace(/ /g,'')} type="character">{char}</Tag>
               ))}
               <Tag key={key+"complete"} type="complete">{data.status}</Tag>
             </>

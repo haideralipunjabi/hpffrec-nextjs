@@ -49,7 +49,7 @@ export default function FilterComponent(props){
                         {
                             filteredChoices?.map((item,key)=>{
                                 return(
-                                    <div key={item.toLowerCase().replace(" ","")}  className="dropdown-item">
+                                    <div key={item.toLowerCase().replace(/ /g,'')}  className="dropdown-item">
                                         <label className="checkbox">
                                         <input checked={selected.includes(item)} className="mr-2" type="checkbox" value={item} onChange={handleInputChange}/>    
                                          {item}
