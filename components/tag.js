@@ -1,7 +1,7 @@
 import styles from "./tag.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function Tag(props){
-    const {type,children} = props;
+    const {type,children,key} = props;
     const types = {
         "rating":{
             "class": "info",
@@ -62,11 +62,11 @@ export default function Tag(props){
     if(children){
     return (
     
-  <span type={type && types[type]?.class} className="tag is-rounded">
-           {type && types[type]?.icon && <span className="icon"><FontAwesomeIcon icon={types[type]["icon"]} /></span> }
-            <span>{children}</span>
+  <span key={key} type={type && types[type]?.class} className="tag is-rounded">
+           {type && types[type]?.icon && <span key={key+"icon"} className="icon"><FontAwesomeIcon icon={types[type]["icon"]} /></span> }
+            <span key={key+"child"}>{children}</span>
         </span>
     )
     }
-    return ""
+    return null
 }

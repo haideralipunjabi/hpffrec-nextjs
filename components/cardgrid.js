@@ -51,17 +51,17 @@ export default function CardGrid(props) {
               .flatMap((item, idx) => {
                 let ads = (Math.random() < pageSize/1000) ? (
                 <div
-                  key={"Ad"+idx}
+                  key={idx}
                   className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
                 >
                   <AdCard />
                 </div>
                 ):""
                 return [<div
-                  key={idx}
+                  key={`${item.comment}${item.id}`}
                   className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
                 >
-                  <Card data={item} authorMode={authorMode} />
+                  <Card key={`${item.comment}${item.id}`} data={item} authorMode={authorMode} />
                 </div>, ads
                 ]
                 }

@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import styles from "./card.module.scss";
 import Tag from "./tag";
 export default function Card(props) {
-  const { data, authorMode } = props;
+  const { data, authorMode,key } = props;
 
   const splitCharacters = (chars) => {
     let splittedChars = [];
@@ -79,29 +79,29 @@ export default function Card(props) {
               style={{ marginBottom: 0, marginRight: "0.5rem" }}
               className="tags has-addons"
             >
-              <Tag type="rank">Recs</Tag>
-              <Tag>{data.count}</Tag>
+              <Tag key={key+"rank"} type="rank">Recs</Tag>
+              <Tag key={key+"rankcount"}>{data.count}</Tag>
             </div>
           )}
-          <a href={`https://${data.website}`} target="_blank" rel="noopener noreferrer"><Tag type="website">{data.website}</Tag></a>
+          <Tag key={key+"website"} type="website"><a className="has-text-white" href={`https://${data.website}`} target="_blank" rel="noopener noreferrer">{data.website}</a></Tag>
           {!authorMode && (
             <>
-              <Tag type="rating">
+              <Tag key={key+"rating"} type="rating">
                 {data.rated?.replace("Fiction", "").trim()}
               </Tag>
-              <Tag type="language">{data.language}</Tag>
-              <Tag type="genre">{data.genre}</Tag>
-              <Tag type="chapters">{data.chapters}</Tag>
-              <Tag type="words">{abbr(data.words, 1)}</Tag>
-              <Tag type="published">{getDateString(data.published)}</Tag>
-              <Tag type="updated">{getDateString(data.updated)}</Tag>
-              <Tag type="favs">{data.favs}</Tag>
-              <Tag type="follows">{data.follows}</Tag>
-              <Tag type="reviews">{data.reviews}</Tag>
+              <Tag key={key+"language"} type="language">{data.language}</Tag>
+              <Tag key={key+"genre"} type="genre">{data.genre}</Tag>
+              <Tag key={key+"chapters"} type="chapters">{data.chapters}</Tag>
+              <Tag key={key+"words"} type="words">{abbr(data.words, 1)}</Tag>
+              <Tag key={key+"published"} type="published">{getDateString(data.published)}</Tag>
+              <Tag key={key+"updated"} type="updated">{getDateString(data.updated)}</Tag>
+              <Tag key={key+"favs"} type="favs">{data.favs}</Tag>
+              <Tag key={key+"follows"} type="follows">{data.follows}</Tag>
+              <Tag key={key+"reviews"} type="reviews">{data.reviews}</Tag>
               {splitCharacters(data.characters).map((char,idx) => (
-                <Tag key={"ch"+idx} type="character">{char}</Tag>
+                <Tag key={char.toLowerCase().replaceAll(" ","")} type="character">{char}</Tag>
               ))}
-              <Tag type="complete">{data.status}</Tag>
+              <Tag key={key+"complete"} type="complete">{data.status}</Tag>
             </>
           )}
         </div>
