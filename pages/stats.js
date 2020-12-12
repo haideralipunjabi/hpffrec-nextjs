@@ -4,8 +4,9 @@ import Navbar from "../components/navbar"
 import Footer from "../components/footer"
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
-import stats from "../public/data/stats.json"
-export default function Home() {
+// import stats from "../public/data/stats.json"
+export default function Stats(props) {
+    const {stats} = props;
     dayjs.extend(relativeTime)
     const data = stats[0];
     return (
@@ -47,4 +48,17 @@ function Tile(props){
             </div>
         </div>
     )
+}
+
+
+export async function getStaticProps(){
+  const res = await fetch(process.env.API_URL + 'stats.json')
+  const stats = await res.json();
+
+  return {
+    props: {
+      stats
+    }
+  }
+
 }

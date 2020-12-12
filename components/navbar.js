@@ -42,7 +42,7 @@ export default function Navbar() {
         >
           <div className={"navbar-end"}>
           <div className="navbar-item">
-              <Link href="/stats">
+              <Link href="/stats" passHref>
                 <IconButton icon={["fas", "chart-line"]}
                 className={router.pathname === "/stata" ? styles.active : ""}
                 >
@@ -51,7 +51,7 @@ export default function Navbar() {
               </Link>
             </div>
           <div className="navbar-item">
-              <Link href="/halloffame">
+              <Link href="/halloffame" passHref>
                 <IconButton icon={["fas", "fire"]}
                 className={router.pathname === "/halloffame" ? styles.active : ""}
                 >
@@ -84,7 +84,7 @@ export default function Navbar() {
               </IconButton>
             </div>
             <div className="navbar-item">
-              <Link href="/about">
+              <Link href="/about" passHref>
                 <IconButton
                   className={router.pathname === "/about" ? styles.active : ""}
                   icon={["fas", "info-circle"]}
