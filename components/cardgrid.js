@@ -45,20 +45,28 @@ export default function CardGrid(props) {
           />
 
           <div className="columns is-multiline">
-            <div className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
-              <AdCard height={80} width={320} />
-            </div>
 
             {filteredData
               .slice((page - 1) * pageSize, page * pageSize)
-              .map((item, idx) => (
+              .flatMap((item, idx) => {
+                let ads = (Math.random() < pageSize/1000) ? (
                 <div
+                  key={"Ad"+idx}
+                  className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+                >
+                  <AdCard />
+                </div>
+                ):""
+                return [<div
                   key={idx}
                   className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
                 >
                   <Card data={item} authorMode={authorMode} />
-                </div>
-              ))}
+                </div>, ads
+                ]
+                }
+              )
+            }
           </div>
           <Pagination
             page={page}
