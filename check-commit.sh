@@ -1,6 +1,6 @@
 #!/bin/bash
 flag="skip-build"
-if [[ "$VERCEL_GIT_COMMIT_MESSAGE" == *$flag* ]]; then
+if [[ "$(git show-branch --no-name HEAD)" == *$flag* ]]; then
     exit 0;
 else
     exit 1;
