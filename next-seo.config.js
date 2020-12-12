@@ -1,7 +1,7 @@
 let config = {
     title:"HPFanfiction Recommender",
     description:"Recommendation from r/HPFanfiction",
-    url:"https://hpffrec.haceksta.org",
+    url:"https://hpffrec.hackesta.org",
 }
 export default {
     title:config.title,
