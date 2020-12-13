@@ -11,8 +11,9 @@ export default class MyDocument extends Document {
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+            crossOrigin={true}
           />
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossOrigin={true}></script>
           <script
             dangerouslySetInnerHTML={{
               __html: `
