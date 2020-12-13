@@ -17,6 +17,17 @@ export default function CardGrid(props) {
     setPage(1);
     setFilteredData(data);
   }, [data]);
+  const random = (min,max) => Math.floor(Math.random() * (max-min) + min);
+  const fillAds = (ar)=>{
+    console.log("Start")
+    const adAmount = pageSize/10;
+    for(let i=0; i<adAmount;i++){
+      let idx = random(0,pageSize);
+      ar.splice(idx,0,{"id":"ad","comment":idx})
+    }
+    console.log("Ads123",ar)
+    return ar
+  }
   
   return (
     <>
@@ -46,25 +57,21 @@ export default function CardGrid(props) {
 
           <div className="columns is-multiline">
 
-            {filteredData
-              .slice((page - 1) * pageSize, page * pageSize)
-              .flatMap((item, idx) => {
-                let ads = (Math.random() < pageSize/1000) ? (
+            {
+              fillAds(filteredData
+              .slice((page - 1) * pageSize, page * pageSize))
+              .map((item, idx) => 
+                (
                 <div
-                  key={idx}
-                  className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
-                >
-                  <AdCard />
-                </div>
-                ):""
-                return [<div
                   key={`${item.comment}${item.id}`}
                   className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
                 >
-                  <Card key={`${item.comment}${item.id}`} data={item} authorMode={authorMode} />
-                </div>, ads
-                ]
-                }
+                  {
+                    (item.id!=="ad") ? <Card key={`${item.comment}${item.id}`} data={item} authorMode={authorMode} /> : <AdCard key={`${item.comment}${item.id}`}/>
+                  }
+                </div>
+              )
+                
               )
             }
           </div>

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-export default function AdCard({width,height}){
+export default function AdCard({key}){
     const [adError, setAdError] = useState(false);
     const [adBlocked, setAdBlocked] = useState(false);
     useEffect(() => {
@@ -17,7 +17,7 @@ export default function AdCard({width,height}){
         }
       }, []);
     return (
-        <div className="card" style={{width:"100%",height:"100%"}}>
+        <div key={key} className="card" style={{width:"100%",height:"100%"}}>
             <div className="card-content fullheight is-flex is-flex-direction-column is-justify-content-center">
                 {
                     !adError && !adBlocked && (

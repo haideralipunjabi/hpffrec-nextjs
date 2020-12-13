@@ -4,6 +4,7 @@ import Navbar from "../components/navbar"
 import Footer from "../components/footer"
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
+import Tag from "../components/tag"
 // import stats from "../public/data/stats.json"
 export default function Stats(props) {
     const {stats} = props;
