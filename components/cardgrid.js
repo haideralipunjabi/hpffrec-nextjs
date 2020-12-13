@@ -4,7 +4,7 @@ import styles from "./cardgrid.module.scss";
 import FilterPanel from "./filterPanel";
 import Pagination from "./pagination";
 import PuffLoader from "react-spinners/PuffLoader";
-import { useWindowSize } from "./CustomHooks";
+// import { useWindowSize } from "./CustomHooks";
 import AdCard from "./adcard";
 
 export default function CardGrid(props) {
@@ -12,20 +12,19 @@ export default function CardGrid(props) {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(40);
   const [filteredData, setFilteredData] = useState(data);
-  const windowSize = useWindowSize();
+  // const windowSize = useWindowSize();
   useEffect(() => {
     setPage(1);
     setFilteredData(data);
   }, [data]);
   const random = (min,max) => Math.floor(Math.random() * (max-min) + min);
   const fillAds = (ar)=>{
-    console.log("Start")
     const adAmount = pageSize/10;
     for(let i=0; i<adAmount;i++){
       let idx = random(0,pageSize);
-      ar.splice(idx,0,{"id":"ad","comment":idx})
+      ar.splice(idx,0,{"id":"ad","comment":i})
     }
-    console.log("Ads123",ar)
+    console.log(ar)
     return ar
   }
   
@@ -38,12 +37,12 @@ export default function CardGrid(props) {
           setFilteredData={setFilteredData}
         />
       )}
-      <PuffLoader
+      {/* <PuffLoader
         color={"#8962ff"}
         size={windowSize.width * 0.2}
         loading={loadingData}
         css={{ margin: "auto" }}
-      />
+      /> */}
       {filteredData.length === 0 && !loadingData && (
         <h4 className="is-size-2 has-text-centered">NO DATA FOUND</h4>
       )}
@@ -56,24 +55,29 @@ export default function CardGrid(props) {
           />
 
           <div className="columns is-multiline">
-
+          <div key={"adcard1"} className="column is-full">
+            <AdCard />
+          </div>
             {
-              fillAds(filteredData
-              .slice((page - 1) * pageSize, page * pageSize))
+              filteredData
+              .slice((page - 1) * pageSize, page * pageSize)
               .map((item, idx) => 
                 (
                 <div
-                  key={`${item.comment}${item.id}`}
+                  key={item.comment.toString() + item.id.toString()}
                   className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
                 >
                   {
-                    (item.id!=="ad") ? <Card key={`${item.comment}${item.id}`} data={item} authorMode={authorMode} /> : <AdCard key={`${item.comment}${item.id}`}/>
+                    <Card key={item.comment.toString() + item.id.toString()} item={item} authorMode={authorMode} />
                   }
                 </div>
               )
                 
               )
             }
+            <div key={"adcard1"} className="column is-full">
+            <AdCard />
+          </div>
           </div>
           <Pagination
             page={page}

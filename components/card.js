@@ -1,9 +1,13 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import AdCard from "./adcard";
 import styles from "./card.module.scss";
 import Tag from "./tag";
 export default function Card(props) {
-  const { data, authorMode,key } = props;
-
+  const { item, authorMode,key } = props;
+  const [data,setData] = useState(item);
+  useEffect(()=>{
+    setData(item)
+  },[item])
   const splitCharacters = (chars) => {
     let splittedChars = [];
     if (!chars || chars.length === 0) return [];
@@ -46,8 +50,9 @@ export default function Card(props) {
 
     return number;
   };
-  return (
-    <div className={`card ${styles.card}`}>
+
+    return (
+      <div key={key} className={`card ${styles.card}`}>
       <div className="card-content">
         <div className={data.count && styles.ranked}>
           <p className="title is-size-4">
@@ -76,8 +81,8 @@ export default function Card(props) {
         <div className={`tags ${styles.tags}`}>
           {data.count && (
             <div
-              style={{ marginBottom: 0, marginRight: "0.5rem" }}
-              className="tags has-addons"
+            style={{ marginBottom: 0, marginRight: "0.5rem" }}
+            className="tags has-addons"
             >
               <Tag key={key+"rank"} type="rank" data="Recs"/>
               <Tag key={key+"rankcount"} data={data.count}/>

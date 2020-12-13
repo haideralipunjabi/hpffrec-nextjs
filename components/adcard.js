@@ -16,26 +16,19 @@ export default function AdCard({key}){
             setAdError(true);
         }
       }, []);
+      if(adError || adBlocked ) return(null)
     return (
         <div key={key} className="card" style={{width:"100%",height:"100%"}}>
             <div className="card-content fullheight is-flex is-flex-direction-column is-justify-content-center">
-                {
-                    !adError && !adBlocked && (
+                
+                     
                         <ins className="adsbygoogle"
                 style={{display:"inline-block",width:"100%",height:"100%",textAlign:"center"}}
                 data-ad-format="fluid"
                 data-ad-layout-key="-6t+ed+2i-1n-4w"
                 data-ad-client="ca-pub-7271288488217782"
                 data-ad-slot="2058631059" />
-                    )
-                }
-                {
-                    adBlocked && (
-                        <p className="title has-text-centered">
-                            Ads Blocked
-                        </p>
-                    )
-                }
+                
             </div>
         </div>
         
