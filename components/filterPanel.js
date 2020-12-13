@@ -45,7 +45,7 @@ export default function FilterPanel(props){
                         })
                     }
                     if(key==="characters"){
-                        return choices.every(choice=>item[key]?.replaceAll("<","").replaceAll(">",",").split(",").map(item=>item.trim()).includes(choice))
+                        return choices.every(choice=>item[key]?.split("<").join("").split(">").join(",").split(",").map(item=>item.trim()).includes(choice))
                     }
                     return choices.some(choice=>item[key]===choice)
                 }
@@ -78,7 +78,7 @@ export default function FilterPanel(props){
     const genStatusChoices = ()=>data.map(item=>item.status).filter(uniqueFilter);
     const genRatedChoices = ()=>data.map(item=>item.rated).filter(uniqueFilter);
     const genCharacterChoices = ()=>data.flatMap(item=>{
-        return item.characters?.replaceAll("<","").replaceAll(">",",").split(",").map(item=>item.trim())
+        return item.characters?.split("<").join("").split(">").join(",").split(",").map(item=>item.trim())
     }).filter(uniqueFilter)
     const handleInputChange = (group,values) => {
         setFilters(filters=>{
