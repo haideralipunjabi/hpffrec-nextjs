@@ -23,11 +23,11 @@ export default function AdCard({key}){
                 
                      
                         <ins className="adsbygoogle"
-                style={{display:"inline-block",width:"100%",height:"100%",textAlign:"center"}}
-                data-ad-format="fluid"
-                data-ad-layout-key="-6t+ed+2i-1n-4w"
+                style={{display:"block",width:"100%",textAlign:"center"}}
+                data-ad-format="auto"
+                data-full-width-responsive="true"
                 data-ad-client="ca-pub-7271288488217782"
-                data-ad-slot="2058631059" />
+                data-ad-slot="2214791141" />
                 
             </div>
         </div>

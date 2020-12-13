@@ -81,7 +81,7 @@ if (!self.define) {
     });
   };
 }
-define("./sw.js",['./workbox-d7d19d82'], function (workbox) { 'use strict';
+define("./sw.js",['./workbox-ccd538d6'], function (workbox) { 'use strict';
 
   /**
   * Welcome to your Workbox-powered service worker!
@@ -105,10 +105,6 @@ define("./sw.js",['./workbox-d7d19d82'], function (workbox) { 'use strict';
       maxAgeSeconds: 86400,
       purgeOnQuotaError: true
     })]
-  }), 'GET');
-  workbox.registerRoute(/(?:googlesyndication|googletagmanager)/i, new workbox.NetworkOnly({
-    "cacheName": "Ignore",
-    plugins: []
   }), 'GET');
   workbox.registerRoute(/^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i, new workbox.CacheFirst({
     "cacheName": "google-fonts",
@@ -163,15 +159,6 @@ define("./sw.js",['./workbox-d7d19d82'], function (workbox) { 'use strict';
     "networkTimeoutSeconds": 10,
     plugins: [new workbox.ExpirationPlugin({
       maxEntries: 16,
-      maxAgeSeconds: 86400,
-      purgeOnQuotaError: true
-    })]
-  }), 'GET');
-  workbox.registerRoute(/.*/i, new workbox.NetworkFirst({
-    "cacheName": "others",
-    "networkTimeoutSeconds": 10,
-    plugins: [new workbox.ExpirationPlugin({
-      maxEntries: 32,
       maxAgeSeconds: 86400,
       purgeOnQuotaError: true
     })]

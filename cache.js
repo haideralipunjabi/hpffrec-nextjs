@@ -19,13 +19,6 @@ module.exports = [
     }
   },
   {
-    urlPattern: /(?:googlesyndication|googletagmanager)/i,
-    handler: 'NetworkOnly',
-    options: {
-      cacheName: 'Ignore'
-    }
-  },
-  {
     urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
     handler: 'CacheFirst',
     options: {
@@ -102,18 +95,6 @@ module.exports = [
         maxAgeSeconds: 24 * 60 * 60 // 24 hours
       },
       networkTimeoutSeconds: 10 // fall back to cache if api does not response within 10 seconds
-    }
-  },
-  {
-    urlPattern: /.*/i,
-    handler: 'NetworkFirst',
-    options: {
-      cacheName: 'others',
-      expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 24 * 60 * 60 // 24 hours
-      },
-      networkTimeoutSeconds: 10
     }
   }
 ]

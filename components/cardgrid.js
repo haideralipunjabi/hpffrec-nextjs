@@ -55,7 +55,7 @@ export default function CardGrid(props) {
           />
 
           <div className="columns is-multiline">
-          <div key={"adcard1"} className="column is-full">
+          <div key={"adcard"+random(0,100)} className="column is-full">
             <AdCard />
           </div>
             {
@@ -75,7 +75,7 @@ export default function CardGrid(props) {
                 
               )
             }
-            <div key={"adcard1"} className="column is-full">
+            <div key={"adcard"+random(0,100)} className="column is-full">
             <AdCard />
           </div>
           </div>
