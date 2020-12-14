@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import FilterComponent from "./filterComponent";
-
+import {uniqueFilter, orderByFrequency } from "./utils";
 export default function FilterPanel(props){
     const {data,filteredData,setFilteredData} = props;
     const [filterChoices,setFilterChoices] = useState({})
     const [filters,setFilters] = useState({})
 
-    const uniqueFilter = (v,i,s)=>(v&&s.indexOf(v)===i);
     const filterDataByKey=(key,choices)=>{
         setFilteredData(filteredData=>{
             return filteredData.filter(item=>{
@@ -45,7 +44,7 @@ export default function FilterPanel(props){
                         })
                     }
                     if(key==="characters"){
-                        return choices.every(choice=>item[key]?.split("<").join("").split(">").join(",").split(",").map(item=>item.trim()).includes(choice))
+                        return choices.every(choice=>item[key]?.replace(/</g,'').replace(/>/g,',').split(",").map(item=>item.trim()).includes(choice))
                     }
                     return choices.some(choice=>item[key]===choice)
                 }
@@ -77,9 +76,10 @@ export default function FilterPanel(props){
     const genWebsiteChoices = ()=>data.map(item=>item.website).filter(uniqueFilter);
     const genStatusChoices = ()=>data.map(item=>item.status).filter(uniqueFilter);
     const genRatedChoices = ()=>data.map(item=>item.rated).filter(uniqueFilter);
-    const genCharacterChoices = ()=>data.flatMap(item=>{
-        return item.characters?.split("<").join("").split(">").join(",").split(",").map(item=>item.trim())
-    }).filter(uniqueFilter)
+    const genCharacterChoices = ()=> orderByFrequency(data.flatMap(item=>{
+        return item.characters?.replace(/</g,"").replace(/>/g,",").split(",").map(item=>item.trim())
+    }))
+    console.log(data)
     const handleInputChange = (group,values) => {
         setFilters(filters=>{
             return {
