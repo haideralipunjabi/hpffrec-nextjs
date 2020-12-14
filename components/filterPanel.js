@@ -5,6 +5,7 @@ export default function FilterPanel(props){
     const {data,filteredData,setFilteredData} = props;
     const [filterChoices,setFilterChoices] = useState({})
     const [filters,setFilters] = useState({})
+    const [activeDropdown, setActiveDropdown] = useState(null);
 
     const filterDataByKey=(key,choices)=>{
         setFilteredData(filteredData=>{
@@ -79,7 +80,6 @@ export default function FilterPanel(props){
     const genCharacterChoices = ()=> orderByFrequency(data.flatMap(item=>{
         return item.characters?.replace(/</g,"").replace(/>/g,",").split(",").map(item=>item.trim())
     }))
-    console.log(data)
     const handleInputChange = (group,values) => {
         setFilters(filters=>{
             return {
@@ -108,12 +108,12 @@ export default function FilterPanel(props){
         <div>
         <h4 className="is-size-4">Filters: </h4>
         <div className="is-flex is-flex-wrap-wrap is-justify-content-space-evenly mb-6">
-            <FilterComponent name="Words" choices={filterChoices.words} onInputChange={handleInputChange}/>
-            <FilterComponent name="Genre" choices={filterChoices.genre} onInputChange={handleInputChange}/>
-            <FilterComponent name="Website" choices={filterChoices.website} onInputChange={handleInputChange}/>
-            <FilterComponent name="Characters" choices={filterChoices.characters} onInputChange={handleInputChange} limit={30}/>
-            <FilterComponent name="Status" choices={filterChoices.status} onInputChange={handleInputChange}/>
-            <FilterComponent name="Rated" choices={filterChoices.rated} onInputChange={handleInputChange}/>
+            <FilterComponent name="Words" choices={filterChoices.words} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
+            <FilterComponent name="Genre" choices={filterChoices.genre} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
+            <FilterComponent name="Website" choices={filterChoices.website} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
+            <FilterComponent name="Characters" choices={filterChoices.characters} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange} limit={30}/>
+            <FilterComponent name="Status" choices={filterChoices.status} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
+            <FilterComponent name="Rated" choices={filterChoices.rated} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
         </div>
         </div>
     )

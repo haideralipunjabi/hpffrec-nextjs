@@ -1,11 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { useWindowSize } from "./CustomHooks";
 import styles from "./filterComponent.module.scss"
 export default function FilterComponent(props){
-    const {name,choices,onInputChange, limit} = props;
-    const [active,setActive] = useState(false);
+    const {name,choices,onInputChange, limit, activeDropdown, setActiveDropdown} = props;
+    // const [active,setActive] = useState(false);
     const [selected,setSelected] = useState([]);
     const [filteredChoices,setFilteredChoices] = useState([])
+    const [isRight, setIsRight] = useState(false);
+    const elemRef = useRef();
+    const window = useWindowSize();
     const handleInputChange = (e)=>{
         if(e.target.checked){
             setSelected(selected=>[...selected,e.target.value])
@@ -26,11 +30,32 @@ export default function FilterComponent(props){
     useEffect(()=>{
         if(choices) setFilteredChoices([...selected,...choices.filter(choice=>!selected.includes(choice)).slice(0,limit)])
     },[choices])
+    useEffect(()=>{
+        if(elemRef.current && window){
+            let x = elemRef.current.getBoundingClientRect().x;
+            let w = elemRef.current.getBoundingClientRect().width;
+            let width  = window.width;
+            console.log(name,width-x,w)
+            if(width-x < 2*w) {
+                setIsRight(true)
+            }
+            else {
+                setIsRight(false)
+            }
+        }
+    },[elemRef.current,window])
     if(choices){
         return(
-            <div className={`dropdown ${active?"is-active":""} mb-2`}>
+            <div ref={elemRef} className={`dropdown ${(activeDropdown === name)?"is-active":""} ${isRight?"is-right":""} mb-2`}>
                 <div className="dropdown-trigger">
-                    <button className="button" aria-haspopup="true" aria-controls={`dropdown-menu-${name.toLowerCase()}`} onClick={()=>setActive(!active)}>
+                    <button className="button" aria-haspopup="true" aria-controls={`dropdown-menu-${name.toLowerCase()}`} onClick={()=>{
+                        if(activeDropdown===name){
+                            setActiveDropdown(null)
+                        }
+                        else {
+                            setActiveDropdown(name)
+                        }
+                    }}>
                         <span>{name}</span>
                         <span className="icon is-small">
                             <FontAwesomeIcon icon={["fas","angle-down"]}/>
@@ -61,6 +86,7 @@ export default function FilterComponent(props){
                     </div>
                 </div>
             </div>
+
         )
     }
     return("")

@@ -18,15 +18,7 @@ export default function CardGrid(props) {
     setFilteredData(data);
   }, [data]);
   const random = (min,max) => Math.floor(Math.random() * (max-min) + min);
-  const fillAds = (ar)=>{
-    const adAmount = pageSize/10;
-    for(let i=0; i<adAmount;i++){
-      let idx = random(0,pageSize);
-      ar.splice(idx,0,{"id":"ad","comment":i})
-    }
-    console.log(ar)
-    return ar
-  }
+
   
   return (
     <>
