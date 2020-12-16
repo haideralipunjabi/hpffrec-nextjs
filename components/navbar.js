@@ -10,7 +10,7 @@ import FaqModal from "./faqModal";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isAppleShown,setIsAppleShown] = useState(false);
-  const [isFAQShown, setIsFAQShown] = useState(true);
+  const [isFAQShown, setIsFAQShown] = useState(false);
   const router = useRouter();
   const installPWA = isInstallable()
   const isAppleDevice = isApple();
