@@ -1,13 +1,20 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useRef, useEffect } from "react";
 import AdCard from "./adcard";
 import styles from "./card.module.scss";
 import Tag from "./tag";
+import useSWR from 'swr';
+import Description from "./description";
+
 export default function Card(props) {
   const { item, authorMode,key } = props;
   const [data,setData] = useState(item);
+  const [descShown, setDescShown] = useState(false);
   useEffect(()=>{
     setData(item)
   },[item])
+  
+  
   const splitCharacters = (chars) => {
     let splittedChars = [];
     if (!chars || chars.length === 0) return [];
@@ -56,6 +63,11 @@ export default function Card(props) {
       <div className="card-content">
         <div className={data.count && styles.ranked}>
           <p className="title is-size-4">
+            {
+              !authorMode && (
+                <FontAwesomeIcon className="is-pulled-right" icon={["fas",descShown ? "angle-up":"angle-down"]} onClick={()=>setDescShown(!descShown)} />
+              )
+            }
             <a
               href={authorMode ? data.author_url : data.story_url}
               target="_blank"
@@ -76,8 +88,16 @@ export default function Card(props) {
             </p>
           )}
         </div>
-
+        {
+          !authorMode && descShown && (
+            <Description comment={data.comment} url={data.story_url} />
+          )
+        }
         <br />
+        {
+          (authorMode || !descShown) && (
+
+          
         <div className={`tags ${styles.tags}`}>
           {data.count && (
             <div
@@ -110,6 +130,8 @@ export default function Card(props) {
             </>
           )}
         </div>
+        )
+      }
       </div>
     </div>
   );

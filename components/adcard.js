@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 export default function AdCard({key}){
     const [adError, setAdError] = useState(false);
-    const [adBlocked, setAdBlocked] = useState(false);
+    const [adBlocked, setAdBlocked] = useState(true);
     useEffect(() => {
         setAdError(false);
         

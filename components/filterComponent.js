@@ -35,7 +35,6 @@ export default function FilterComponent(props){
             let x = elemRef.current.getBoundingClientRect().x;
             let w = elemRef.current.getBoundingClientRect().width;
             let width  = window.width;
-            console.log(name,width-x,w)
             if(width-x < 2*w) {
                 setIsRight(true)
             }
