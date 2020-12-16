@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react"
-import CardGrid from "../components/cardgrid"
 import Navbar from "../components/navbar"
 import Footer from "../components/footer"
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
-import Tag from "../components/tag"
-// import stats from "../public/data/stats.json"
+import {useRouter} from "next/router";
+
 export default function Stats(props) {
     const {stats} = props;
     dayjs.extend(relativeTime)
     const data = stats[0];
+    const router = useRouter();
+    const {embed} = router.query
     return (
     <div
     className="is-flex  is-flex-direction-column is-justify-content-space-between"
     style={{ height: "100%" }}
   >
-    <Navbar/>
-    <section className="section">
+    {!embed && <Navbar/>}
+    <section className="section" style={{margin: "auto"}}>
       <div className="container">
           <div className="columns is-multiline">
                     <Tile size="is-half is-hidden-mobile" title="Statistics"/>
@@ -32,7 +32,7 @@ export default function Stats(props) {
           </div>
       </div>
     </section>
-    <Footer />
+    {!embed && <Footer />}
   </div>
   )
 }
