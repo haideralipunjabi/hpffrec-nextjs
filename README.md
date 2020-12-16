@@ -8,3 +8,7 @@ After finishing, it triggers the website build over at [Vercel](https://vercel.c
 The frontend requests all the necessary JSON files at build time using `getStaticProps()` and builds the website.
 
 The description of the stories are fetched at client side using [SWR](https://swr.vercel.app/)
+
+## F.A.Q
+![story_faq](public/story_faq.svg)
+![author_faq](public/author_faq.svg)
