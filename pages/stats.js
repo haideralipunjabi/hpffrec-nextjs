@@ -2,20 +2,17 @@ import Navbar from "../components/navbar"
 import Footer from "../components/footer"
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
-import {useRouter} from "next/router";
 
 export default function Stats(props) {
     const {stats} = props;
     dayjs.extend(relativeTime)
     const data = stats[0];
-    const router = useRouter();
-    const {embed} = router.query
     return (
     <div
     className="is-flex  is-flex-direction-column is-justify-content-space-between"
     style={{ height: "100%" }}
   >
-    {!embed && <Navbar/>}
+     <Navbar/>
     <section className="section" style={{margin: "auto"}}>
       <div className="container">
           <div className="columns is-multiline">
@@ -32,7 +29,7 @@ export default function Stats(props) {
           </div>
       </div>
     </section>
-    {!embed && <Footer />}
+   <Footer />
   </div>
   )
 }

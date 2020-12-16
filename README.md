@@ -12,3 +12,5 @@ The description of the stories are fetched at client side using [SWR](https://sw
 ## F.A.Q
 ![story_faq](public/story_faq.svg)
 ![author_faq](public/author_faq.svg)
+
+## STATS
