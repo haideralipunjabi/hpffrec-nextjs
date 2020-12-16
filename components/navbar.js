@@ -6,9 +6,11 @@ import styles from "./navbar.module.scss";
 import IconButton from "./iconButton";
 import AppleModal from "./appleModal";
 import {isApple, isInstallable} from "./CustomHooks";
+import FaqModal from "./faqModal";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isAppleShown,setIsAppleShown] = useState(false);
+  const [isFAQShown, setIsFAQShown] = useState(true);
   const router = useRouter();
   const installPWA = isInstallable()
   const isAppleDevice = isApple();
@@ -93,10 +95,19 @@ export default function Navbar() {
                 </IconButton>
               </Link>
             </div>
+            <div className={`navbar-item`}>
+              <IconButton
+                onClick={() => setIsFAQShown(true)}
+                icon={["fas", "question-circle"]}
+              >
+                F.A.Q
+              </IconButton>
+            </div>
           </div>
         </div>
       </nav>
       <AppleModal isActive={isAppleShown} handleClose={()=>{setIsAppleShown(false)}}/>
+      <FaqModal isActive={isFAQShown} handleClose={()=>setIsFAQShown(false)}/>
     </>
   );
 }
