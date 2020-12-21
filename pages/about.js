@@ -106,6 +106,12 @@ export default function Home() {
               >
                 Contact Me
               </IconButton>
+              <IconButton 
+              icon={["fas","mug-hot"]}
+              href="https://www.buymeacoffee.com/HAliPunjabi"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Buy Me a Coffee</IconButton>
           </div>
         </div>
       </section>
