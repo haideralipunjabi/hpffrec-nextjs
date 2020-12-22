@@ -39,8 +39,8 @@ export default function Tag(props){
             "class":"time",
             "icon":["fas","sync"]
         },
-        "website": {
-            "class":"website",
+        "site": {
+            "class":"site",
             "icon":["fas","globe-americas"]
         },
         "favs": {

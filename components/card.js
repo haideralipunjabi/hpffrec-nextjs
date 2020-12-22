@@ -108,12 +108,10 @@ export default function Card(props) {
               <Tag key={key+"rankcount"} data={data.count}/>
             </div>
           )}
-          <Tag key={key+"website"} type="website" data={<a className="has-text-white" href={`https://${data.website}`} target="_blank" rel="noopener noreferrer">{data.website}</a>}/>
+          <Tag key={key+"site"} type="site" data={data.site}/>
           {!authorMode && (
             <>
-              <Tag key={key+"rating"} type="rating">
-                {data.rated?.replace("Fiction", "").trim()}
-              </Tag>
+              <Tag key={key+"rating"} type="rating" data={data.rated}></Tag>
               <Tag key={key+"language"} type="language" data={data.language} />
               <Tag key={key+"genre"} type="genre" data={data.genre} />
               <Tag key={key+"chapters"} type="chapters" data={data.chapters}/>
