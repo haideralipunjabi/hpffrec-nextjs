@@ -47,6 +47,9 @@ export default function FilterPanel(props){
                     if(key==="characters"){
                         return choices.every(choice=>item[key]?.replace(/</g,'').replace(/>/g,',').split(",").map(item=>item.trim()).includes(choice))
                     }
+                    if(key==="rated"){
+                        return choices.some(choice=>item["rated"]?.replace("Fiction","").trim().replace("/  /g,' '")===choice)
+                    }
                     return choices.some(choice=>item[key]===choice)
                 }
                 return true
@@ -62,8 +65,8 @@ export default function FilterPanel(props){
 
     const genGenreChoices = () =>data.flatMap(item=>{
             if(!item.genre) return;
-            return item.genre.split("/")
-        }).filter(uniqueFilter)
+            return item.genre.split(/[\s\/\,]/)
+        }).filter(uniqueFilter).filter(item=>item!="-")
     const genWordsChoices = () => data.map(item=>{
         if(item.words >= 500000) return "> 500k"
         if(item.words >= 100000) return "> 100k"
@@ -76,7 +79,7 @@ export default function FilterPanel(props){
     }).filter(uniqueFilter);
     const genWebsiteChoices = ()=>data.map(item=>item.site).filter(uniqueFilter);
     const genStatusChoices = ()=>data.map(item=>item.status).filter(uniqueFilter);
-    const genRatedChoices = ()=>data.map(item=>item.rated).filter(uniqueFilter);
+    const genRatedChoices = ()=>data.map(item=>item.rated?.replace("Fiction","").trim().replace("/  /g,' '")).filter(uniqueFilter);
     const genCharacterChoices = ()=> orderByFrequency(data.flatMap(item=>{
         return item.characters?.replace(/</g,"").replace(/>/g,",").split(",").map(item=>item.trim())
     }))
@@ -103,7 +106,9 @@ export default function FilterPanel(props){
             }   
         })
     },[filteredData])
-
+    useEffect(()=>{
+        console.log(filterChoices?.genre)
+    },[filterChoices])
     return(
         <div>
         <h4 className="is-size-4">Filters: </h4>
