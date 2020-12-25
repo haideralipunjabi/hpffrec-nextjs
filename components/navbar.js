@@ -52,6 +52,15 @@ export default function Navbar() {
                 </IconButton>
               </Link>
             </div>
+            <div className="navbar-item">
+              <Link href="/recommend" passHref>
+                <IconButton icon={["fas", "search"]}
+                className={router.pathname === "/recommend" ? styles.active : ""}
+                >
+                 Search
+                </IconButton>
+              </Link>
+            </div>
           <div className="navbar-item">
               <Link href="/halloffame" passHref>
                 <IconButton icon={["fas", "fire"]}

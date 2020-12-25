@@ -131,6 +131,12 @@ export default function Card(props) {
         )
       }
       </div>
+      {
+        descShown&&
+        <div className="card-footer">
+        <a href={`/recommend?story_id=${data.story_id}`} className="card-footer-item">View Similar</a>
+      </div>
+      }
     </div>
   );
 }

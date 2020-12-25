@@ -22,7 +22,7 @@ export default function CardGrid(props) {
   
   return (
     <>
-      {!authorMode && (
+      {(!authorMode && filteredData.length > 0 ) && (
         <FilterPanel
           data={data}
           filteredData={filteredData}
