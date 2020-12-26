@@ -10,7 +10,7 @@ export default function Home(props) {
     style={{ height: "100%" }}
   >
     <Navbar/>
-    <section className="section">
+    <section className="section mb-a">
       <div className="container">
         <CardGrid data={data} loadingData={false}/>
       </div>

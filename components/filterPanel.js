@@ -95,8 +95,7 @@ export default function FilterPanel(props){
         filterData();
     }, [filters])
     useEffect(()=>{
-        setFilterChoices(filterChoices=>{
-            return {
+        setFilterChoices({
                 ["words"]: genWordsChoices(),
                 ["genre"]: genGenreChoices(),
                 ["site"]: genWebsiteChoices(),
@@ -104,21 +103,18 @@ export default function FilterPanel(props){
                 ["status"]: genStatusChoices(),
                 ["rated"]: genRatedChoices()
             }   
-        })
+        )
     },[filteredData])
-    useEffect(()=>{
-        console.log(filterChoices?.genre)
-    },[filterChoices])
     return(
         <div>
         <h4 className="is-size-4">Filters: </h4>
         <div className="is-flex is-flex-wrap-wrap is-justify-content-space-evenly mb-6">
-            <FilterComponent name="Words" choices={filterChoices.words} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
-            <FilterComponent name="Genre" choices={filterChoices.genre} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
-            <FilterComponent name="Site" choices={filterChoices.site} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
-            <FilterComponent name="Characters" choices={filterChoices.characters} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange} limit={30}/>
-            <FilterComponent name="Status" choices={filterChoices.status} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
-            <FilterComponent name="Rated" choices={filterChoices.rated} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
+            <FilterComponent key="filter-words" name="Words" choices={filterChoices.words} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
+            <FilterComponent key="filter-genre" name="Genre" choices={filterChoices.genre} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
+            <FilterComponent key="filter-site" name="Site" choices={filterChoices.site} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
+            <FilterComponent key="filte-char" name="Characters" choices={filterChoices.characters} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange} limit={30}/>
+            <FilterComponent key="filter-status" name="Status" choices={filterChoices.status} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
+            <FilterComponent key="filter-rated" name="Rated" choices={filterChoices.rated} activeDropdown={activeDropdown} setActiveDropdown={setActiveDropdown}  onInputChange={handleInputChange}/>
         </div>
         </div>
     )

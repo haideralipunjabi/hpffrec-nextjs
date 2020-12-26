@@ -26,7 +26,7 @@ export default function Halloffame(props) {
     style={{ height: "100%" }}
   >
     <Navbar/>
-    <section className="section">
+    <section className="section mb-a">
       <div className="container">
         <div className="tabs is-toggle is-toggle-rounded is-large-desktop is-medium-mobile is-centered">
         <ul>

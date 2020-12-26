@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import { useWindowSize } from "./CustomHooks";
 import styles from "./filterComponent.module.scss"
 export default function FilterComponent(props){
-    const {name,choices,onInputChange, limit, activeDropdown, setActiveDropdown} = props;
+    const {name,choices,onInputChange, limit, activeDropdown, setActiveDropdown,key} = props;
     // const [active,setActive] = useState(false);
     const [selected,setSelected] = useState([]);
     const [filteredChoices,setFilteredChoices] = useState([])
@@ -45,7 +45,7 @@ export default function FilterComponent(props){
     },[elemRef.current,window])
     if(choices){
         return(
-            <div ref={elemRef} className={`dropdown ${(activeDropdown === name)?"is-active":""} ${isRight?"is-right":""} mb-2`}>
+            <div key={key} ref={elemRef} className={`dropdown ${(activeDropdown === name)?"is-active":""} ${isRight?"is-right":""} mb-2`}>
                 <div className="dropdown-trigger">
                     <button className="button" aria-haspopup="true" aria-controls={`dropdown-menu-${name.toLowerCase()}`} onClick={()=>{
                         if(activeDropdown===name){
@@ -88,5 +88,5 @@ export default function FilterComponent(props){
 
         )
     }
-    return("")
+    return(null)
 }
