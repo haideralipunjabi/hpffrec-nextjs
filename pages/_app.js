@@ -7,22 +7,10 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
-import * as gtag from '../lib/gtag'
+import CookieConsent from "react-cookie-consent";
 
 function MyApp({ Component, pageProps }) {
   library.add(fab, fas, far);
-  const router = useRouter()
-  useEffect(() => {
-    const handleRouteChange = (url) => {
-      gtag.pageview(url)
-    }
-    router.events.on('routeChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
   return (
     <>
       <Head>
@@ -55,6 +43,13 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <DefaultSeo {...SEO} />
       <Component {...pageProps} />
+
+    <CookieConsent 
+    style={{ background: "#16161a" }}
+    buttonStyle={{ background: "#8962ff",color:"#ffffff", fontSize: "13px" }}
+    >
+            This site uses cookies to show ads using <a href="https://www.google.com/adsense/" target="_blank" rel="noopener noreferrer">Google Adsense</a>. For users in UK and EEA, non-personalized ads are being served, cookies are only used to analyze traffic and for ads measurement purposes. <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">Learn More</a>.
+    </CookieConsent>
     </>
   );
 }
