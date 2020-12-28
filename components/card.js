@@ -57,7 +57,7 @@ export default function Card(props) {
 
     return number;
   };
-
+    if (!data) return null;
     return (
       <div key={key} className={`card ${styles.card}`}>
       <div className="card-content">
