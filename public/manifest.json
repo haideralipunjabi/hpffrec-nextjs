@@ -20,5 +20,14 @@
         "sizes": "512x512",
         "type": "image/png"
       }
-    ]
+    ],
+    "share_target": {
+      "action": "/recommend",
+      "method": "GET",
+      "params": {
+        "title":"share_title",
+        "text":"share_text",
+        "url":"url"
+      }
+    }
   }

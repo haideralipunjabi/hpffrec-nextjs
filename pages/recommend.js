@@ -22,13 +22,20 @@ export default function Recommend() {
     if (data) setLoadingData(false);
   }, [data]);
   const router = useRouter()
-  const { story_id } = router.query
+  const { story_id, share_text } = router.query
   useEffect(()=>{
     if(story_id){
       setLoadingData(true);
       setStoryID(story_id);
     }
   },[story_id])
+  useEffect(()=>{
+      if(share_text){
+        inputRef.current.value = share_text;
+        setInputData(share_text);
+        onSearch(share_text);
+      }
+  },[share_text])
   const REGEX = {
     "fanfiction.net": "ff",
     "archiveofourown.org": "ao3",
@@ -41,11 +48,15 @@ export default function Recommend() {
     setLoadingData(true);
     setStoryID(id);
   };
-  const onSearch = () => {
-    let result = /(\d{2,})/.exec(inputData);
+  const onSearch = (data) => {
+    if(!data){
+      data =inputData;
+    }
+    let result = /(\d{2,})/.exec(data);    
+    console.log("Reccomend",data, result)
     if (result) {
       Object.keys(REGEX).forEach((key) => {
-        if (inputData.includes(key)) {
+        if (data.includes(key)) {
           let id = REGEX[key] + "-" + result[0];
           loadData(id);
         }
@@ -82,7 +93,7 @@ export default function Recommend() {
               </span>
             </div>
             <div className="control">
-              <button className="button is-primary" onClick={onSearch}>
+              <button className="button is-primary" onClick={()=>onSearch()}>
                 Search
               </button>
             </div>
