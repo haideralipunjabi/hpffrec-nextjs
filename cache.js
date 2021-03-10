@@ -8,7 +8,7 @@ module.exports = [
     urlPattern: '/',
     // use NetworkFirst or NetworkOnly if you redirect un-authenticated user to login page
     // use StaleWhileRevalidate if you want to prompt user to reload when new version available
-    handler: 'NetworkFirst',
+    handler: 'StaleWhileRevalidate',
     options: {
       // don't change cache name
       cacheName: 'start-url',
