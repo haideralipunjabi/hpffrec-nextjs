@@ -7,7 +7,6 @@ export default class MyDocument extends Document {
         <Head>
         <script data-goatcounter="https://hpffrec.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>          
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossOrigin={true}></script>
         </Head>
         <body>
           <Main />

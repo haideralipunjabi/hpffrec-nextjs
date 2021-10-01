@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useRef, useEffect } from "react";
-import AdCard from "./adcard";
 import styles from "./card.module.scss";
 import Tag from "./tag";
 import useSWR from 'swr';

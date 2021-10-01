@@ -5,7 +5,6 @@ import FilterPanel from "./filterPanel";
 import Pagination from "./pagination";
 import PuffLoader from "react-spinners/PuffLoader";
 import { useWindowSize } from "./CustomHooks";
-import AdCard from "./adcard";
 
 export default function CardGrid(props) {
   const { data, authorMode, loadingData } = props;
@@ -47,9 +46,6 @@ export default function CardGrid(props) {
           />
 
           <div className="columns is-multiline">
-          <div key={"adcard"+random(0,100)} className="column is-full">
-            <AdCard />
-          </div>
             {
               filteredData
               .slice((page - 1) * pageSize, page * pageSize)
@@ -67,9 +63,6 @@ export default function CardGrid(props) {
                 
               )
             }
-            <div key={"adcard"+random(0,100)} className="column is-full">
-            <AdCard />
-          </div>
           </div>
           <Pagination
             page={page}
