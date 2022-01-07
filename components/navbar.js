@@ -85,6 +85,12 @@ export default function Navbar() {
             >
               F.A.Q
             </NavbarItem>
+            <a href="mailto:developer@hackesta.org" className="navbar-item">
+              <span className="mx-3">
+                <FontAwesomeIcon icon={["far", "envelope"]} />
+              </span>
+              Contact
+            </a>
           </div>
         </div>
       </nav>

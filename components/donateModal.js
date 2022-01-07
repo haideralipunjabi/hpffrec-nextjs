@@ -32,7 +32,7 @@ export default function DonateModal(props) {
             </a>
             <a
               className="button is-rounded is-light my-2"
-              href="https://www.paypal.com/paypalme/my/profile"
+              href="https://paypal.me/haideralipunjabi"
               target="_blank"
               rel="noopener noreferrer"
             >
