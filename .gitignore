@@ -37,3 +37,6 @@ public/data/*
 
 # Local Netlify folder
 .netlify
+
+public/sw*
+public/workbox*
