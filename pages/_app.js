@@ -43,13 +43,6 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <DefaultSeo {...SEO} />
       <Component {...pageProps} />
-
-    <CookieConsent 
-    style={{ background: "#16161a" }}
-    buttonStyle={{ background: "#8962ff",color:"#ffffff", fontSize: "13px" }}
-    >
-            This site uses cookies to show ads using <a href="https://www.google.com/adsense/" target="_blank" rel="noopener noreferrer">Google Adsense</a>. For users in UK and EEA, non-personalized ads are being served, cookies are only used to analyze traffic and for ads measurement purposes. <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">Learn More</a>.
-    </CookieConsent>
     </>
   );
 }
