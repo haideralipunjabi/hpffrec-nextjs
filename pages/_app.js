@@ -7,7 +7,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { GCScript } from "goatcounter-nextjs";
+import { GCScript } from "next-goatcounter";
 
 function MyApp({ Component, pageProps }) {
   library.add(fab, fas, far);
