@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { GCEvent } from "../lib/goatcounter";
 import DonateModal from "./donateModal";
 
 export default function Navbar() {
@@ -32,6 +33,7 @@ export default function Navbar() {
             <a
               className="button is-small is-rounded"
               onClick={() => {
+                GCEvent('donate', 'Donate Button Pressed');
                 setDonateShown(true);
               }}
             >

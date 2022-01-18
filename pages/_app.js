@@ -7,7 +7,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import CookieConsent from "react-cookie-consent";
+import { GCScript } from "../lib/goatcounter";
 
 function MyApp({ Component, pageProps }) {
   library.add(fab, fas, far);
@@ -32,7 +32,11 @@ function MyApp({ Component, pageProps }) {
           href="/favicons/favicon-16x16.png"
         />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+        <link
+          rel="mask-icon"
+          href="/favicons/safari-pinned-tab.svg"
+          color="#5bbad5"
+        />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
         <link
@@ -41,6 +45,7 @@ function MyApp({ Component, pageProps }) {
           crossOrigin
         />
       </Head>
+      <GCScript />
       <DefaultSeo {...SEO} />
       <Component {...pageProps} />
     </>

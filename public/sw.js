@@ -13,75 +13,61 @@
 
 // If the loader is already loaded, just stop.
 if (!self.define) {
-  const singleRequire = name => {
-    if (name !== 'require') {
-      name = name + '.js';
-    }
-    let promise = Promise.resolve();
-    if (!registry[name]) {
+  let registry = {};
+
+  // Used for `eval` and `importScripts` where we can't get script URL by other means.
+  // In both cases, it's safe to use a global var because those functions are synchronous.
+  let nextDefineUri;
+
+  const singleRequire = (uri, parentUri) => {
+    uri = new URL(uri + ".js", parentUri).href;
+    return registry[uri] || (
       
-        promise = new Promise(async resolve => {
+        new Promise(resolve => {
           if ("document" in self) {
             const script = document.createElement("script");
-            script.src = name;
-            document.head.appendChild(script);
+            script.src = uri;
             script.onload = resolve;
+            document.head.appendChild(script);
           } else {
-            importScripts(name);
+            nextDefineUri = uri;
+            importScripts(uri);
             resolve();
           }
-        });
+        })
       
-    }
-    return promise.then(() => {
-      if (!registry[name]) {
-        throw new Error(`Module ${name} didn’t register its module`);
-      }
-      return registry[name];
-    });
+      .then(() => {
+        let promise = registry[uri];
+        if (!promise) {
+          throw new Error(`Module ${uri} didn’t register its module`);
+        }
+        return promise;
+      })
+    );
   };
 
-  const require = (names, resolve) => {
-    Promise.all(names.map(singleRequire))
-      .then(modules => resolve(modules.length === 1 ? modules[0] : modules));
-  };
-  
-  const registry = {
-    require: Promise.resolve(require)
-  };
-
-  self.define = (moduleName, depsNames, factory) => {
-    if (registry[moduleName]) {
+  self.define = (depsNames, factory) => {
+    const uri = nextDefineUri || ("document" in self ? document.currentScript.src : "") || location.href;
+    if (registry[uri]) {
       // Module is already loading or loaded.
       return;
     }
-    registry[moduleName] = Promise.resolve().then(() => {
-      let exports = {};
-      const module = {
-        uri: location.origin + moduleName.slice(1)
-      };
-      return Promise.all(
-        depsNames.map(depName => {
-          switch(depName) {
-            case "exports":
-              return exports;
-            case "module":
-              return module;
-            default:
-              return singleRequire(depName);
-          }
-        })
-      ).then(deps => {
-        const facValue = factory(...deps);
-        if(!exports.default) {
-          exports.default = facValue;
-        }
-        return exports;
-      });
+    let exports = {};
+    const require = depUri => singleRequire(depUri, uri);
+    const specialDeps = {
+      module: { uri },
+      exports,
+      require
+    };
+    registry[uri] = Promise.all(depsNames.map(
+      depName => specialDeps[depName] || require(depName)
+    )).then(deps => {
+      factory(...deps);
+      return exports;
     });
   };
 }
-define("./sw.js",['./workbox-ec9e7a79'], function (workbox) { 'use strict';
+define(['./workbox-9a8b0a38'], (function (workbox) { 'use strict';
 
   /**
   * Welcome to your Workbox-powered service worker!
@@ -98,71 +84,31 @@ define("./sw.js",['./workbox-ec9e7a79'], function (workbox) { 'use strict';
   importScripts();
   self.skipWaiting();
   workbox.clientsClaim();
-  workbox.registerRoute("/", new workbox.StaleWhileRevalidate({
+  workbox.registerRoute("/", new workbox.NetworkFirst({
     "cacheName": "start-url",
-    plugins: [new workbox.ExpirationPlugin({
-      maxEntries: 1,
-      maxAgeSeconds: 86400,
-      purgeOnQuotaError: true
-    })]
+    plugins: [{
+      cacheWillUpdate: async ({
+        request,
+        response,
+        event,
+        state
+      }) => {
+        if (response && response.type === 'opaqueredirect') {
+          return new Response(response.body, {
+            status: 200,
+            statusText: 'OK',
+            headers: response.headers
+          });
+        }
+
+        return response;
+      }
+    }]
   }), 'GET');
-  workbox.registerRoute(/^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i, new workbox.CacheFirst({
-    "cacheName": "google-fonts",
-    plugins: [new workbox.ExpirationPlugin({
-      maxEntries: 4,
-      maxAgeSeconds: 31536000,
-      purgeOnQuotaError: true
-    })]
-  }), 'GET');
-  workbox.registerRoute(/\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i, new workbox.StaleWhileRevalidate({
-    "cacheName": "static-font-assets",
-    plugins: [new workbox.ExpirationPlugin({
-      maxEntries: 4,
-      maxAgeSeconds: 604800,
-      purgeOnQuotaError: true
-    })]
-  }), 'GET');
-  workbox.registerRoute(/\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i, new workbox.StaleWhileRevalidate({
-    "cacheName": "static-image-assets",
-    plugins: [new workbox.ExpirationPlugin({
-      maxEntries: 64,
-      maxAgeSeconds: 86400,
-      purgeOnQuotaError: true
-    })]
-  }), 'GET');
-  workbox.registerRoute(/\.(?:js)$/i, new workbox.StaleWhileRevalidate({
-    "cacheName": "static-js-assets",
-    plugins: [new workbox.ExpirationPlugin({
-      maxEntries: 32,
-      maxAgeSeconds: 86400,
-      purgeOnQuotaError: true
-    })]
-  }), 'GET');
-  workbox.registerRoute(/\.(?:css|less)$/i, new workbox.StaleWhileRevalidate({
-    "cacheName": "static-style-assets",
-    plugins: [new workbox.ExpirationPlugin({
-      maxEntries: 32,
-      maxAgeSeconds: 86400,
-      purgeOnQuotaError: true
-    })]
-  }), 'GET');
-  workbox.registerRoute(/\.(?:json|xml|csv)$/i, new workbox.NetworkFirst({
-    "cacheName": "static-data-assets",
-    plugins: [new workbox.ExpirationPlugin({
-      maxEntries: 32,
-      maxAgeSeconds: 86400,
-      purgeOnQuotaError: true
-    })]
-  }), 'GET');
-  workbox.registerRoute(/\/api\/.*$/i, new workbox.NetworkFirst({
-    "cacheName": "apis",
-    "networkTimeoutSeconds": 10,
-    plugins: [new workbox.ExpirationPlugin({
-      maxEntries: 16,
-      maxAgeSeconds: 86400,
-      purgeOnQuotaError: true
-    })]
+  workbox.registerRoute(/.*/i, new workbox.NetworkOnly({
+    "cacheName": "dev",
+    plugins: []
   }), 'GET');
 
-});
+}));
 //# sourceMappingURL=sw.js.map

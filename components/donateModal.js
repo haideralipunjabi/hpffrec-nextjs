@@ -24,6 +24,7 @@ export default function DonateModal(props) {
             <a
               className={`button is-rounded my-2 is-light ${styles.bmc}`}
               href="https://www.buymeacoffee.com/HAliPunjabi"
+              data-goatcounter-click="buymeacoffee.com"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -33,6 +34,7 @@ export default function DonateModal(props) {
             <a
               className="button is-rounded is-light my-2"
               href="https://paypal.me/haideralipunjabi"
+              data-goatcounter-click="paypal.me"
               target="_blank"
               rel="noopener noreferrer"
             >

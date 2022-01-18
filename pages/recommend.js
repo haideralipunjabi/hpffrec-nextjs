@@ -6,6 +6,7 @@ import Footer from "../components/footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useSWR from "swr";
 import { useRouter } from 'next/router'
+import { GCEvent } from "../lib/goatcounter";
 
 export default function Recommend() {
   const inputRef = useRef();
@@ -49,11 +50,11 @@ export default function Recommend() {
     setStoryID(id);
   };
   const onSearch = (data) => {
+    GCEvent('search', 'Search Recommendation');
     if(!data){
       data =inputData;
     }
     let result = /(\d{2,})/.exec(data);    
-    console.log("Reccomend",data, result)
     if (result) {
       Object.keys(REGEX).forEach((key) => {
         if (data.includes(key)) {
