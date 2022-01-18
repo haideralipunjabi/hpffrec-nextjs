@@ -6,7 +6,7 @@ import Footer from "../components/footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useSWR from "swr";
 import { useRouter } from 'next/router'
-import { GCEvent } from "../lib/goatcounter";
+import { GCEvent } from "next-goatcounter";
 
 export default function Recommend() {
   const inputRef = useRef();

@@ -7,7 +7,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { GCScript } from "../lib/goatcounter";
+import { GCScript } from "goatcounter-nextjs";
 
 function MyApp({ Component, pageProps }) {
   library.add(fab, fas, far);
@@ -45,7 +45,7 @@ function MyApp({ Component, pageProps }) {
           crossOrigin
         />
       </Head>
-      <GCScript />
+      <GCScript siteUrl={"https://hpffrec.goatcounter.com/count"} />
       <DefaultSeo {...SEO} />
       <Component {...pageProps} />
     </>

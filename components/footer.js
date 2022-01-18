@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { GCEvent } from "../lib/goatcounter";
+import { GCEvent } from "next-goatcounter";
 import DonateModal from "./donateModal";
 
 export default function Navbar() {

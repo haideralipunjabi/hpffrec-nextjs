@@ -23,7 +23,6 @@ export default function Home(props) {
 export async function getStaticProps() {
   const res = await fetch(process.env.API_URL + "latest.json");
   const data = await res.json();
-  console.log(data);
   return {
     props: {
       data,
