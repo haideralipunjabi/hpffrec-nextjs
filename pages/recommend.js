@@ -5,7 +5,7 @@ import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useSWR from "swr";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { GCEvent } from "next-goatcounter";
 
 export default function Recommend() {
@@ -22,21 +22,21 @@ export default function Recommend() {
   useEffect(() => {
     if (data) setLoadingData(false);
   }, [data]);
-  const router = useRouter()
-  const { story_id, share_text } = router.query
-  useEffect(()=>{
-    if(story_id){
+  const router = useRouter();
+  const { story_id, share_text } = router.query;
+  useEffect(() => {
+    if (story_id) {
       setLoadingData(true);
       setStoryID(story_id);
     }
-  },[story_id])
-  useEffect(()=>{
-      if(share_text){
-        inputRef.current.value = share_text;
-        setInputData(share_text);
-        onSearch(share_text);
-      }
-  },[share_text])
+  }, [story_id]);
+  useEffect(() => {
+    if (share_text) {
+      inputRef.current.value = share_text;
+      setInputData(share_text);
+      onSearch(share_text);
+    }
+  }, [share_text]);
   const REGEX = {
     "fanfiction.net": "ff",
     "archiveofourown.org": "ao3",
@@ -50,11 +50,11 @@ export default function Recommend() {
     setStoryID(id);
   };
   const onSearch = (data) => {
-    GCEvent('search', 'Search Recommendation');
-    if(!data){
-      data =inputData;
+    GCEvent("search", "Search Recommendation");
+    if (!data) {
+      data = inputData;
     }
-    let result = /(\d{2,})/.exec(data);    
+    let result = /(\d{2,})/.exec(data);
     if (result) {
       Object.keys(REGEX).forEach((key) => {
         if (data.includes(key)) {
@@ -94,17 +94,22 @@ export default function Recommend() {
               </span>
             </div>
             <div className="control">
-              <button className="button is-primary" onClick={()=>onSearch()}>
+              <button className="button is-primary" onClick={() => onSearch()}>
                 Search
               </button>
             </div>
           </div>
-          {data && <div className="mb-5">
-        <h4 className="is-size-4 mb-1">Selected: </h4>
-            <Card key={-1} item={data[0]}/>
-          </div> }
+          {data && (
+            <div className="mb-5">
+              <h4 className="is-size-4 mb-1">Selected: </h4>
+              <Card key={-1} id={-1} item={data[0]} />
+            </div>
+          )}
           {(data || loadingData) && (
-            <CardGrid data={(data&&data.slice(1)) || []} loadingData={loadingData} />
+            <CardGrid
+              data={(data && data.slice(1)) || []}
+              loadingData={loadingData}
+            />
           )}
         </div>
       </section>

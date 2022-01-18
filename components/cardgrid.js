@@ -56,7 +56,7 @@ export default function CardGrid(props) {
                   className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
                 >
                   {
-                    <Card key={idx} item={item} authorMode={authorMode} />
+                    <Card key={idx} id={idx} item={item} authorMode={authorMode} />
                   }
                 </div>
               )
