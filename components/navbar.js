@@ -5,6 +5,7 @@ import LogoSvg from "../public/hpffrec_icon.svg";
 import styles from "./navbar.module.scss";
 import IconButton from "./iconButton";
 import AppleModal from "./appleModal";
+import Banner from "./banner";
 import { isApple, isInstallable } from "./CustomHooks";
 import FaqModal from "./faqModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -104,6 +105,8 @@ export default function Navbar() {
         isActive={isFAQShown}
         handleClose={() => setIsFAQShown(false)}
       />
+          <Banner/>
+
     </>
   );
 }
